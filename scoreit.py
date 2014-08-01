@@ -79,9 +79,9 @@ def computeScores(fileName, fields, judgesKey, projectKey, sumField, normalizeFi
         normalize([sumField], judgeGroup)
         # the entries grouping from before is still valid! regroup by project name
         projectGroup = groupBy(projectKey, entries)
-        # calculate scores by summing all of the entries for a given project
-        scores = sorted([(sum(entry[sumField] for entry in entries),project) for project, entries in projectGroup.iteritems()])[::-1]
-        return scores
+        # calculate scores by averaging all of the entries for a given project
+        scores = [(sum(score[sumField] for score in scoreSet)/float(len(scoreSet)),project) for project, scoreSet in projectGroup.iteritems()]
+        return sorted(scores)[::-1]
 """
 test case
 if __name__ == "__main__":
