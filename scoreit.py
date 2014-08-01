@@ -38,7 +38,7 @@ def mapTypes(fields, typeConv,l):
     return map(lambda x: {key:(typeConv(value) if key in fields else value) for key, value in x.iteritems()},l)
 def norm(std,avg, x):
     """ normalize a value x from a distribution defined by a std and avg"""
-    return (x-avg)/std
+    return 0 if std == 0 else (x-avg)/std
 def stddev(group, avg=None):
     """ compute the stddev of a group, optionally passing in the avg """
     if not avg:
